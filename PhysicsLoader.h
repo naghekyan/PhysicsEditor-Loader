@@ -12,7 +12,7 @@ class b2Body;
 class PhysicsLoader 
 {
 public:
-    PhysicsLoader(float globalPtmRatio = 1.0f);
+    PhysicsLoader();
     void addShapesWithFile(const std::string &plist);
     void addFixturesToBody(b2Body *body, const std::string &shape);
     Vec2 getAnchorPointForShape(const std::string &shape) const;
@@ -21,12 +21,8 @@ public:
     ~PhysicsLoader();
         
 private:
-    std::map<std::string, BodyDef *>        m_shapeObjects;
+    std::map<std::string, BodyDef*>         m_shapeObjects;
     float                                   m_ptmRatio;
-    // global PTM ratio is represented to arrange the vertex coordinates with 
-    // director->getContentScaleFactor as for different scale factors Sprite->getContentSize()
-    // returns texture size / ContentScaleFactor and this should be controlled
-    float                                   m_globalPtmRatio;
 };
 
 

@@ -39,8 +39,7 @@ public:
 };
 
 
-PhysicsLoader::PhysicsLoader(float globalPtmRatio/* = 1.0f*/)
-    : m_globalPtmRatio(globalPtmRatio)
+PhysicsLoader::PhysicsLoader()
 {
 }
 
@@ -93,7 +92,7 @@ void PhysicsLoader::addShapesWithFile(const std::string &plist)
     
     ValueMap metadataDict = dict["metadata"].asValueMap();
     int format = Value(metadataDict["format"]).asInt();
-    m_ptmRatio = m_globalPtmRatio * Value(metadataDict["ptm_ratio"]).asFloat();
+    m_ptmRatio = Value(metadataDict["ptm_ratio"]).asFloat();
     CCAssert(format == 1, "Format not supported");
 
     ValueMap bodyDict = dict["bodies"].asValueMap();
